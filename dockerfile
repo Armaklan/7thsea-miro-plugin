@@ -2,8 +2,10 @@ FROM node:15.8
 
 WORKDIR /usr/src/app
 
-COPY . .
-RUN npm install
+COPY package*.json ./
+RUN npm ci
 
-EXPOSE 8080
+COPY --chown=node:node . .
+
+EXPOSE 3000
 CMD [ "node", "src/app.js" ]
